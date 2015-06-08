@@ -1,1 +1,107 @@
-
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Spinnning and Moving Objects in Three.js</title>
+        <link rel="stylesheet" type="text/css" href="makepretty.css">
+            
+            </head>
+    <body>
+        <div id="header">
+            <h1>Spinning and Moving Objects in Three.js</h1>
+        </div>
+        <div id="pages">
+            <div><a href="main.html">Introduction</a></div>
+            <br>
+            <div><a href="createShapes.html">Create Shapes</a></div>
+            <br>
+            <div><a href="shapePosition.html">Shape Positioning</a></div>
+            <br>
+            <div><a href="spinMoveShape.html">Spin/Move Shapes</a></div>
+            <br>
+            <div><a href="example.html">Example</a></div>
+            <br>
+        </div>
+        <div id="info">
+            <div>Now we want to get these objects moving!</div>
+            <br>
+            
+            <div>There are a few ways to move an object. The object can spin in a stationary location. The object can move back and forth along an axis or in a circular motion within the browser. And the object can be moving and spinning at the same time.</div>
+            <br>
+            
+            <div>When creating the cube depicted within the threejs.org website the cube was spinning about both the X and Y axes creating an oscillating movement. An object can spin in all the directions depending on what the user is trying to achieve. It is worth noting that there exists a priority among the axes that determine the order in which rotations around multiple axes will occur. That default order is X-Y-Z, which is not very hard to remember.</div>
+            <br>
+            
+            <div>If we want the pyramid to spin about the X axis we would update the render function as follows:</div>
+            <br>
+            
+            <div>
+                <strong>var render = function () {<br>
+                    requestAnimationFrame( render );<br>
+                    pyramid.rotation.x += 0.01;<br>
+                    renderer.render(scene, camera);<br>
+                    };<br>
+                    render();</strong><br>
+            </div>
+            <br>
+            
+            <div>The spinning implementation is the same for all the objects. The rate of spinning is measured in radians and can be sped up or slowed down depending on user preference. For our purposes it is best to use a lower spin rate (0.01 – 0.05) in order to better see what exactly is going on.</div>
+            <br>
+            
+            <div>In order for the objects to move back and forth or in a circular motion we need to apply a function that oscillates between positive and negative, otherwise the object will walk off the screen and disappear. This is achieved by using the sine and cosine functions defined within the Math library. For this implementation to be successful we need to define a variable that increases with time (kind of like time itself), except that we control the magnitude of change of the variable. To do this we must create a variable that is updated with each animation cycle. In the examples below we used the variable t to accomplish this update.</div>
+            <br>
+            
+            <div>If we wanted to move the shapes to move back and forth along the different axes we would update the render function as follows:</div>
+            <br>
+            
+            <div>
+                <strong>var t=0;<br>
+                    var render = function () {<br>
+                    requestAnimationFrame( render );<br>
+                    t += 0.01;<br>
+                    cube.position.x = Math.cos(t) + 0;<br>
+                    pyramid.position.y = Math.cos(t) + 0;<br>
+                    sphere.position.z = Math.cos(t) + 0;<br>
+                    renderer.render(scene, camera);<br>
+                    };<br>
+                    render();</strong><br>
+            </div>
+            <br>
+            
+            <div>Either of the sine or cosine functions could be used to accomplish the movement back and forth along the desired axis.</div>
+            <br>
+            
+            <div>If we wanted to create a solar system of spinning shapes we would update the render function as follows:</div>
+            <br>
+            
+            <div>
+                <strong>var t=0;<br>
+                    var render = function () {<br>
+                    requestAnimationFrame( render );<br>
+                    t += 0.01;<br>
+                    cube.rotation.y += 0.01;<br>
+                    cube.rotation.x += 0.01;<br>
+                    cube.position.x = 1.5*Math.cos(t) + 0;<br>
+                    cube.position.z = 1.5*Math.sin(t) + 0;<br>
+                    sphere.rotation.z += 0.01;<br>
+                    sphere.position.x = 0.5 * Math.cos(t) + 0;<br>
+                    sphere.position.z = 0.5 * Math.sin(t) + 0;<br>
+                    pyramid.rotation.y += 0.01;<br>
+                    pyramid.position.x = 1 * Math.cos(t) + 0;<br>
+                    pyramid.position.z = 1 * Math.sin(t) + 0;<br>
+                    renderer.render(scene, camera);<br>
+                    };<br>
+                    render();</strong><br>
+            </div>
+            <br>
+            
+            <div>For the circular motion to be successful it requires both the sine and cosine functions to be used on different axes. Also we had to scale the position of each object to create orbits of varying radii so the shapes do not overlap. Hence, creating the effect of a solar system.</div>
+            <br>
+            
+            <div><strong>NOTE</strong>: To help in viewing what is going on you can change the camera position by moving a little further away in the Z axis direction. This is done by typing <strong>camera.positon.z = 10</strong> before the render function.</div>
+            <br>
+            
+            <div><a href="shapePosition.html">Previous Page</a>   <a href="example.html">Next Page</a></div>
+        </div>
+    </body>
+</html>

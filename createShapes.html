@@ -1,1 +1,101 @@
-
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Create Shapes in Three.js</title>
+        <link rel="stylesheet" type="text/css" href="makepretty.css">
+            
+            </head>
+    <body>
+        <div id="header">
+            <h1>Creating Shapes in Three.js</h1>
+        </div>
+        <div id="pages">
+            <div><a href="main.html">Introduction</a></div>
+            <br>
+            <div><a href="createShapes.html">Create Shapes</a></div>
+            <br>
+            <div><a href="shapePosition.html">Shape Positioning</a></div>
+            <br>
+            <div><a href="spinMoveShape.html">Spin/Move Shapes</a></div>
+            <br>
+            <div><a href="example.html">Example</a></div>
+            <br>
+        </div>
+        <div id="info">
+            <div>We have already created a scene with a spinning cube using the BoxGeometry class. We are now going to add a sphere and diamond to our scene. Creating a sphere and pyramid is exactly the same as creating a cube, we just use the SphereGeometry and CylinderGeometry classes for the sphere and cube respectively.</div>
+            <br>
+            
+            <div>We know that the JavaScript for creating a cube looks like this:</div>
+            <br>
+            
+            <div>
+                <strong>var geometry = new THREE.BoxGeometry( 1, 1, 1 );<br>
+                var material = new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } );<br>
+                var cube = new THREE.Mesh( geometry, material );<br>
+                scene.add( cube );</strong><br>
+            </div>
+            <br>
+            
+            <div>The BoxGeometry syntax is as follows:</div>
+            <br>
+            
+            <div>
+                <strong>BoxGeometry(width, height, depth)</strong><br>
+            </div>
+            <br>
+            
+            <div>The width value represents the length of the sides on the X axis. The height value represents the length of the sides on the Y axis. The depth value represents the length of the sides on the Z axis.</a></div>
+            <br>
+            
+            <div>The JavaSript for creating the sphere looks like this:</div>
+            <br>
+            
+            <div>
+                <strong>var geometry = new THREE.SphereGeometry( 1.5, 8, 8 );<br>
+                var material = new THREE.MeshBasicMaterial( { color: 0x0000ff, wireframe: true } );<br>
+                var sphere = new THREE.Mesh( geometry, material );<br>
+                scene.add( sphere );</strong><br>
+            </div>
+            <br>
+            
+            <div>The SphereGeometry syntax is as follows:</div>
+            <br>
+            
+            <div>
+                <strong>SphereGeometry(radius, widthSegments, heightSegments)</strong><br>
+            </div>
+            <br>
+            
+            <div>Increasing the radius value will increase the size of the sphere. Increasing the widthSegments and heightSegments values will increase the number of horizontal and vertical segments respectively. The higher the widthSegment and heightSegment values the more cross-hatching that is displayed on the sphere, giving it more of circular look.</div>
+            <br>
+            
+            <div>The JavaSript for creating the pyramid looks like this:</div>
+            <br>
+            
+            <div>
+                <strong>var geometry = new THREE.CylinderGeometry( 0, 2, 2, 8, 1 );<br>
+                var material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );<br>
+                var pyramid = new THREE.Mesh( geometry, material );<br>
+                scene.add( pyramid );</strong><br>
+            </div>
+            <br>
+            
+            <div>The CylinderGeometry syntax is as follows:</div>
+            <br>
+            
+            <div>
+                <strong>CylinderGeometry(radiusTop, radiusBottom, height, radiusSegments, heightSegments)</strong><br>
+            </div>
+            <br>
+            
+            <div>To create a pyramid we need to set the radiusTop value to zero. This gives the pyramid its signature pointy shape. Increasing the radiusBottom value will increase the surface area of the pyramid bottom, making the pyramid appear less pointy. The exact opposite will happen when decreasing the radiusBottom value, causing the pyramid to appear pointier. Increasing/Decreasing the height value will also have the same affect as increasing/decreasing the radiusBottom. Increasing the height value will make the pyramid pointier, and vice versa when decreasing the height value. The radiusSegments value sets the number of segmented faces around the circumference of the cylinder. So to create a pyramid we would want to set the radiusSegments value to be 4. Hence, the value of radiusSegments will determine the shape of the cylinder base. Therefore if radiusSegments = 4, then cylinder base shape will be a square. Similarly, if radiusSegments = 8, then the shape of the cylinder base will be an octagon, forming an upside down diamond. And the more the radiusSegments value increases the closer the cylinder base comes to looking like a circle. The heightSegments value should be set to the value 1 when creating a pyramid. Setting the heightSegments value to 1 gives the pyramid its traditional four triangular faces.</div>
+            <br>
+            
+            <div><strong>NOTE</strong>: We have displayed these shapes with a wireframe mesh attribute to make them easier to see. Interestingly, notice that all the shapes we just created are made using one type of 2D shape; the triangle. This is true for the creation of all 3D shapes in a digital medium.</div>
+            <br>
+            
+            <div><a href="main.html">Previous Page</a>   <a href="shapePosition.html">Next Page</a></div>
+        </div>
+    </body>
+</html>

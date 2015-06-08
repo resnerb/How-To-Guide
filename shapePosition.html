@@ -1,1 +1,127 @@
-
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Changing Shape Position in Three.js</title>
+        <link rel="stylesheet" type="text/css" href="makepretty.css">
+            
+            </head>
+    <body>
+        <div id="header">
+            <h1>Changing Shape Position in Three.js</h1>
+        </div>
+        <div id="pages">
+            <div><a href="main.html">Introduction</a></div>
+            <br>
+            <div><a href="createShapes.html">Create Shapes</a></div>
+            <br>
+            <div><a href="shapePosition.html">Shape Positioning</a></div>
+            <br>
+            <div><a href="spinMoveShape.html">Spin/Move Shapes</a></div>
+            <br>
+            <div><a href="example.html">Example</a></div>
+            <br>
+        </div>
+        <div id="info">
+            <div>Next we are going to change the shape of each position. To do this we need to better understand the 3D system used within Three.js. Three.js uses the “right-hand” XYZ coordinate system. A good way to understand the system is to actually see each individual axis within the web browser. To do this we will create a plane spinning on an axis to be displayed within the browser.</div>
+            <br>
+            
+            <div>The JavaScript for creating a plane looks like this:</div>
+            <br>
+            
+            <div>
+                <strong>var geometry = new THREE.PlaneGeometry( 5, 20, 32 );<br>
+                    var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );<br>
+                    var plane = new THREE.Mesh( geometry, material );<br>
+                    scene.add( plane );</strong><br>
+            </div>
+            <br>
+            
+            <div>We will update the render function so that the plane is spinning about the X axis:</div>
+            <br>
+            
+            <div>
+                <strong>var render = function () {<br>
+                    requestAnimationFrame( render );<br>
+                    plane.rotation.x += 0.01;<br>
+                    renderer.render(scene, camera);<br>
+                    };<br>
+                    render();</strong><br>
+            </div>
+            <br>
+            
+            <div>Once implemented we can see the imaginary line that the plane is rotating about is the X axis. We can repeat this for the Y and Z axes by updating the render function.</div>
+            <br>
+            
+            <div>Y axis:</div>
+            <br>
+            
+            <div>
+                <strong>var render = function () {<br>
+                    requestAnimationFrame( render );<br>
+                    plane.rotation.y += 0.01;<br>
+                    renderer.render(scene, camera);<br>
+                    };<br>
+                    render();</strong><br>
+            </div>
+            <br>
+            
+            <div>Z axis:</div>
+            <br>
+            
+            <div>
+                <strong>var render = function () {<br>
+                    requestAnimationFrame( render );<br>
+                    plane.rotation.z += 0.01;<br>
+                    renderer.render(scene, camera);<br>
+                    };<br>
+                    render();</strong><br>
+            </div>
+            <br>
+            
+            <div>We should now have an understanding of where the coordinate system lies within the browser. To clarify, the X axis moves horizontally along the screen. The Y axis moves vertically up and down the screen. (Essentially the XY plane is the screen itself with the origin (0, 0, 0) at the center.) And the Z axis moves in and out of the screen, towards and away from the user.</div>
+            <br>
+            
+            <div>Now we can rotate our shapes to position them in different orientations. To do this we must select and axis to rotate around and apply an angle (in radians) to specify the magnitude of the rotation. The rotation can be either positive or negative. Using the Math library will make life much easier by giving us access to the value of Pi.</div>
+            <br>
+            
+            <div>The syntax to rotate an object is as follows:</div>
+            <br>
+            
+            <div>
+                <strong>[shape].rotation.x += Math.PI/n;<br>
+                    [shape].rotation.y += Math.PI/n;<br>
+                    [shape].rotation.z += Math.PI/n;</strong><br>
+            </div>
+            <br>
+                
+            <div>Increasing the radius value will increase the size of the sphere. Increasing the widthSegments and heightSegments values will increase the number of horizontal and vertical segments respectively. The higher the widthSegment and heightSegment values the more cross-hatching that is displayed on the sphere, giving it more of circular look.</div>
+            <br>
+                
+            <div>If we wanted to display the cube resting on one of the corners we would update the JavaScript just before entering the render function as follows:</div>
+            <br>
+                
+            <div>
+                <strong>cube.rotation.x += Math.PI/4;<br>
+                cube.rotation.y += Math.PI/4;</strong><br>
+            </div>
+            <br>
+                
+            <div>This is done by first rotating 45 degrees (Pi/4) about the X axis, which tips the cube onto one of its edges. Followed by another rotation of 45 degrees about the Y axis, tipping the cube from its edge onto the corner.</div>
+            <br>
+                
+            <div>If we wanted to display the pyramid resting on its tip we would update the JavaScript just before entering the render function as follows:</div>
+            <br>
+                
+            <div>
+                <strong>pyramid.rotation.z += Math.PI;</strong><br>
+            </div>
+            <br>
+                
+            <div>This is done by rotating 180 degrees (Pi) about the X or Z axis.</div>
+            <br>
+                
+            <div><a href="createShapes.html">Previous Page</a>   <a href="spinMoveShape.html">Next Page</a></div>
+        </div>
+</body>
+</html>
